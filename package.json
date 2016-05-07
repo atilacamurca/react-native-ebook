@@ -1,0 +1,26 @@
+{
+  "name": "react-native-ebook",
+  "version": "0.0.1",
+  "description": "React Native manual (.mobi, .epub)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atilacamurca/react-native-ebook.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atilacamurca/react-native-ebook/issues"
+  },
+  "homepage": "https://github.com/atilacamurca/react-native-ebook",
+  "dependencies": {
+    "applause": "^1.2.2",
+    "async": "~0.2.10",
+    "del": "^2.2.0",
+    "mime": "~1.2.11",
+    "walk": "~2.3.1"
+  }
+}
