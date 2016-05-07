@@ -27,7 +27,7 @@ var options = {
             match: /<img src="(.*)" \/>/g,
             replacement: function () {
                 let file = arguments[1];
-                return `![${file}](${file})`;
+                return `![${file}](./versions/${version}/${file})`;
             }
         }
     ]
