@@ -8,3 +8,5 @@ node_modules
 .tm_properties
 .idea
 .tmp
+epub/react-native-manual.epub
+epub/react-native-manual.mobi
