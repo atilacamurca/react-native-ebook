@@ -24,10 +24,30 @@ const Applause = require('applause');
 var options = {
     patterns: [
         {
-            match: /<img src="(.*)" \/>/g,
+            match: /<img src="(.*)".*(\/|\/img)>/g,
             replacement: function () {
                 let file = arguments[1];
                 return `![${file}](./versions/${version}/${file})`;
+            }
+        },
+        {
+            match: /<script.*\/script>/g,
+            replacement: ''
+        },
+        {
+            match: /<block.*\/>/g, // inline block
+            replacement: ''
+        },
+        {
+            match: /(<|<\/)block.*>/g,
+            replacement: ''
+        },
+        {
+            match: /!\[(.*)\]\((.*)\)/g,
+            replacement: function () {
+                let description = arguments[1];
+                let file = arguments[2];
+                return `![${description}](./versions/${version}/${file})`;
             }
         }
     ]
@@ -35,7 +55,7 @@ var options = {
 var applause = Applause.create(options);
 let tocMarkdown = [];
 
-function handleImages(data) {
+function replaceOptions(data) {
     let result = applause.replace(data);
     if (result.content) {
         return result.content;
@@ -47,7 +67,7 @@ function writeMdString(item, callback) {
     const filename = `.tmp/${item.file}.md`;
     let data = `# ${item.title}\n\n`;
     data += fs.readFileSync(`versions/${version}/docs/${item.file}.md`);
-    data = handleImages(data);
+    data = replaceOptions(data);
     fs.appendFile(filename, data, function(err) {
         if (err) throw err;
 
@@ -70,7 +90,7 @@ async.forEach(toc, writeMdString, function(err) {
     -o epub/react-native-manual.epub \
     --epub-cover-image=epub/cover.jpg \
     --epub-stylesheet=epub/epub.css \
-    epub/title.txt \
+    versions/${version}/title.txt \
     ${tocMdString}`,
         function(err, stdout, stderr) {
             if (err) console.log(err);

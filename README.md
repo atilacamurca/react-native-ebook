@@ -1,6 +1,6 @@
 # React Native Manual (.mobi, .epub)
 
-Current version of React Native in the docs: **0.25.1**
+Current version of React Native in the docs: **0.26.0**
 
 Based on the repo <https://github.com/zeMirco/nodejs-pdf-docs>
 
